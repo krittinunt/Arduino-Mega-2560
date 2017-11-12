@@ -5,7 +5,7 @@
 void setup() {
   // put your setup code here, to run once:
   pinMode(LED_1, OUTPUT);
-  digitalWrite(LED_1, HIGH);
+  digitalWrite(LED_1, LOW);
 }
 
 void loop() {
