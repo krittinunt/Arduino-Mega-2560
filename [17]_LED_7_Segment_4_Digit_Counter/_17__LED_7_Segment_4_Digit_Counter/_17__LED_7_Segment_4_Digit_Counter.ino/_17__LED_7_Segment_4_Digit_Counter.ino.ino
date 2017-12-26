@@ -53,19 +53,19 @@ void loop() {
 
   // ?xxx
   data_buffer = data;
-  LED7SEG_DATA[0] = data_buffer / 1000;
-  data_buffer -= LED7SEG_DATA[0] * 1000;
+  LED7SEG_DATA[3] = data_buffer / 1000;
+  data_buffer -= LED7SEG_DATA[3] * 1000;
 
   // x?xx
-  LED7SEG_DATA[1] = data_buffer / 100;
-  data_buffer -= LED7SEG_DATA[1] * 100;
+  LED7SEG_DATA[2] = data_buffer / 100;
+  data_buffer -= LED7SEG_DATA[2] * 100;
 
   // xx?x
-  LED7SEG_DATA[2] = data_buffer / 10;
-  data_buffer -= LED7SEG_DATA[2] * 10;
+  LED7SEG_DATA[1] = data_buffer / 10;
+  data_buffer -= LED7SEG_DATA[1] * 10;
 
   // xxx?
-  LED7SEG_DATA[3] = data_buffer;
+  LED7SEG_DATA[0] = data_buffer;
 
   for (j=0; j<4; j++)
   {

@@ -5,7 +5,8 @@
 #define SW_RESET        2
 
 const uint8_t LED7SEG_TABLE[] = {0x3F, 0x06, 0x5B, 0x4F, 0x66,   // 0 1 2 3 4
-                                 0x6D, 0x7D, 0x07, 0x7F, 0x6F};  // 5 6 7 8 9
+                                 0x6D, 0x7D, 0x07, 0x7F, 0x6F,   // 5 6 7 8 9
+                                 0x00};
 const uint8_t LED7SEG_PORT[] = {22, 23, 24, 25, 26, 27, 28, 29}; // a b c d e f g h
 const uint8_t LED7SEG_CC[] = {53, 52, 51, 50}; // cc1 cc2 cc3 cc4
 const uint8_t PB_SWITCH[] = {21, 20, 19}; // sw1 sw2 sw3
@@ -72,9 +73,13 @@ void scan_display(void)
   // xx?x
   LED7SEG_DATA[1] = data_buffer / 10;
   data_buffer -= LED7SEG_DATA[1] * 10;
-
+  
   // xxx?
   LED7SEG_DATA[0] = data_buffer;
+
+  if (data < 1000) LED7SEG_DATA[3] = 10;
+  if (data < 100) LED7SEG_DATA[2] = 10;
+  if (data < 10) LED7SEG_DATA[1] = 10;
 
   digitalWrite(LED7SEG_CC[0], LOW);
   digitalWrite(LED7SEG_CC[1], LOW);
